@@ -22,5 +22,18 @@ span {
 }
 .qrcode {
 	width: 200px;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	margin: 16px 0;
+	padding: 8px;
+	background-color: white;
+}
+.content {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 0 16px;
+}
+.content ul {
+	margin-left: 20px;
 }
 </style>

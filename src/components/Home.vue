@@ -2,7 +2,7 @@
 </script>
 
 <template>
-	<div id="main">
+	<div id="main" class="home-main">
 		<span class="title-panel">
 			<span class="logo"></span>
 			<span class="title">神的陨落，韵律之起，欢迎来到祁舟！</span>
@@ -12,13 +12,16 @@
 </template>
 
 <style lang="scss" scoped>
-#main {
+.home-main {
 	height: 80vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-	background-color: transparent;
+	background-color: transparent !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+	box-shadow: none !important;
 }
 .logo {
 	width: 64px;

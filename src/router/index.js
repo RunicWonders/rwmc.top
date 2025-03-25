@@ -6,6 +6,8 @@ const routes = [
 	{path: '/join', component: () => import('@components/Join.vue')},
 	{path: '/gallery', component: () => import('@components/Gallery.vue')},
 	{path: '/sponsor', component: () => import('@components/Sponsor.vue')},
+	{path: '/docs', component: () => import('@components/Docs.vue')},
+	{path: '/docs/:path', component: () => import('@components/Docs.vue')},
 	{path: '/404', component: () => import('@components/404.vue')},
 	{path: '/:pathMatch(.*)*', redirect: '/404'}
 ];

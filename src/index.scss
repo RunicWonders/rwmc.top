@@ -119,7 +119,12 @@ img:not(.fancybox-image) {
 	overflow: auto;
 
 	color: var(--main-text);
-	background-color: var(--main-bg);
+	background-color: rgba(252, 252, 252, 0.75);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	
 	&>* {
 		margin-left: 8px;
 	}
@@ -136,5 +141,11 @@ img:not(.fancybox-image) {
 		font-size: 100%;
 		position: static;
 		width: 100%;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	#main {
+		background-color: rgba(34, 34, 34, 0.75);
 	}
 }

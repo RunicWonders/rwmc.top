@@ -25,13 +25,22 @@ onMounted(async() => {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+	
 	& img {
 		max-height: 400px;
+		border-radius: 8px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
+	
+	& a {
+		margin: 8px 0;
+		display: inline-block;
 	}
 }
+
 @media screen and (max-width: 768px) {
 	#main img {
-		max-width: 350px;
+		max-width: 90%;
 		max-height: auto;
 	}
 }
