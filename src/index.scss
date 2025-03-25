@@ -1,0 +1,140 @@
+@import url('@mdi/font');
+@import url('@fancyapps/ui/dist/fancybox/fancybox.css');
+
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+	color-scheme: light;
+	margin: 0;
+	width: 80vw;
+	position: fixed;
+	left: calc(50% - 40vw);
+	font-size: 125%;
+
+	--main-bg: #FCFCFC;
+	--main-text: #000;
+	--main-a: #ff1493;
+	--bg-color: rgba(0, 0, 0, 0.1);
+}
+
+a:not([role="button"]):not([data-fancybox]) {
+	color: pink;
+	text-decoration: none;
+	position: relative;
+	&::before {
+		border-radius: 4px;
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.2);
+		transition: width 0.2s, background-color 0.2s;
+	}
+	&:hover::before {
+		width: 100%;
+	}
+	&[target="_blank"]::after {
+		position: absolute;
+		font-family: 'Material Design Icons';
+		content: '\F03CC';
+		margin-left: 2px;
+		font-size: 1.2em;
+	}
+}
+
+a[role="button"] {
+	background-color: #ffa500;
+	color: #fff;
+	padding: 16px 32px;
+	border-radius: 8px;
+	font-size: 24px;
+	text-decoration: none;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: #ff8c00;
+	}
+}
+
+img:not(.fancybox-image) {
+	transition: transform 0.2s;
+	&:hover {
+		transform: scaleY(0.9);
+	}
+}
+
+.title {
+	font-size: 2.5em;
+	font-weight: bold;
+	margin-top: 0.5em;
+}
+
+.logo {
+	display: inline-flex;
+	align-items: center;
+	position: relative;
+	&::after {
+		position: absolute;
+		content: '';
+		display: block;
+		width: 24px;
+		height: 24px;
+		left: -28px;
+		background-image: url('/favicon.ico');
+		background-size: contain;
+	}
+}
+
+.fab::before {
+	font: var(--fa-font-brands);
+	content: var(--fa);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: transform 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	transform: translateY(100%);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	body {
+		color-scheme: dark;
+
+		--main-bg: #222;
+		--main-text: #0ff;
+		--main-a: hotpink;
+	}
+}
+
+#main {
+	height: 100vh;
+	min-height: 100vh;
+	overflow: auto;
+
+	color: var(--main-text);
+	background-color: var(--main-bg);
+	&>* {
+		margin-left: 8px;
+	}
+	& a:not([role="button"]) {
+		color: var(--main-a);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.title {
+		font-size: 1.25em;
+	}
+	body {
+		font-size: 100%;
+		position: static;
+		width: 100%;
+	}
+}
