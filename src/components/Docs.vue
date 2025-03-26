@@ -57,9 +57,9 @@ marked.setOptions({
 // 导航到指定文档
 function navigateTo(path) {
   if (path === 'index') {
-    router.push('/docs');
+    router.push('/doc');
   } else {
-    router.push(`/docs/${path}`);
+    router.push(`/doc/${path}`);
   }
 }
 

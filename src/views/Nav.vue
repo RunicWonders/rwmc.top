@@ -22,7 +22,7 @@ const links = [
 	['加入我们', '/join'],
 	['赞助', '/sponsor'],
 	['画廊', '/gallery'],
-	['文档', '/docs'],
+	['文档', '/doc'],
 ]
 </script>
 
