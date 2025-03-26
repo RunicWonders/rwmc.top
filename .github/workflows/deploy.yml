@@ -17,14 +17,14 @@ jobs:
         with:
           node-version: '18'
       
-      - name: 启用Yarn
-        run: corepack enable
-      
       - name: 安装依赖
-        run: yarn install
+        run: npm install
+      
+      - name: 修复build:img脚本错误
+        run: sed -i 's/npx build:img/npm run build:img/g' package.json
       
       - name: 构建项目
-        run: yarn build
+        run: npm run build
       
       - name: 安装sshpass
         run: sudo apt-get install -y sshpass

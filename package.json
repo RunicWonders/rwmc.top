@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "npx build:img && vite build",
+    "build": "npm run build:img && vite build",
     "preview": "vite preview",
     "build:img": "node bin/buildImagesJson.js"
   },
