@@ -22,6 +22,8 @@ onMounted(async() => {
 
 <style lang="scss" scoped>
 #main {
+	padding-left: 0.8em;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -29,7 +31,7 @@ onMounted(async() => {
 	& img {
 		max-height: 400px;
 		border-radius: 8px;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+		box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 	}
 	
 	& a {
