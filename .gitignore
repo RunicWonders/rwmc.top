@@ -1,5 +1,8 @@
 node_modules
 .idea
 
+dist
+
 .yarn
+pnpm-lock.yaml
 package-lock.json
