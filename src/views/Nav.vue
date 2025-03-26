@@ -69,6 +69,9 @@ if (typeof window !== 'undefined') {
 	backdrop-filter: blur(6px);
 	padding: 0 16px;
 	box-sizing: border-box;
+
+	position: fixed;
+	z-index: 10000;
 }
 .logo::after {
 	border-radius: 0 0 0 8px;
