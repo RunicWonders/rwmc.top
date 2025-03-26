@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "yarn build:img && vite build",
-    "serve": "vite preview",
+    "build": "npx build:img && vite build",
+    "preview": "vite preview",
     "build:img": "node bin/buildImagesJson.js"
   },
   "packageManager": "yarn@4.7.0",
