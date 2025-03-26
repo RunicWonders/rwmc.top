@@ -1,0 +1,59 @@
+name: 部署到生产服务器
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+      
+      - name: 设置Node.js环境
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: 'npm'
+      
+      - name: 安装依赖
+        run: npm install
+      
+      - name: 构建项目
+        run: npm run build
+      
+      - name: 安装sshpass
+        run: sudo apt-get install -y sshpass
+      
+      - name: 部署到服务器
+        env:
+          SSH_HOST: ${{ secrets.SERVER_HOST }}
+          SSH_PORT: 22
+          SSH_USER: root
+          SSH_PASS: ${{ secrets.SERVER_PASS }}
+          REMOTE_DIR: "/opt/1panel/apps/openresty/openresty/www/sites/rwmc.top/index"
+        run: |
+          # 创建dist目录的压缩包
+          tar -czvf dist.tar.gz -C dist .
+          
+          # 上传压缩包到服务器
+          sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no -P $SSH_PORT dist.tar.gz $SSH_USER@$SSH_HOST:/tmp/
+          
+          # 在服务器上解压文件到目标目录
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST << ENDSSH
+            # 确保目标目录存在
+            mkdir -p $REMOTE_DIR
+            
+            # 清空目标目录中的旧文件
+            rm -rf $REMOTE_DIR/*
+            
+            # 解压新文件到目标目录
+            tar -xzvf /tmp/dist.tar.gz -C $REMOTE_DIR
+            
+            # 删除临时压缩包
+            rm /tmp/dist.tar.gz
+            
+            echo "部署完成！"
+          ENDSSH 
