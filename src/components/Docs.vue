@@ -278,7 +278,7 @@ onMounted(() => {
     overflow: auto;
   }
   
-  :deep(code) {
+  :deep(code:not(pre>code)) {
     background-color: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
     padding: 0.2em 0.4em;
@@ -348,7 +348,7 @@ onMounted(() => {
       background-color: #1e1e1e;
     }
     
-    :deep(code) {
+    :deep(code:not(pre>code)) {
       background-color: rgba(240, 246, 252, 0.15);
     }
     

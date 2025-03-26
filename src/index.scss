@@ -59,6 +59,11 @@ a[role="button"] {
 	}
 }
 
+code {
+	font-size: 14px;
+	font-family: 'Fira Code', 黑体, monospace;
+}
+
 img:not(.fancybox-image) {
 	transition: transform 0.2s;
 	&:hover {
