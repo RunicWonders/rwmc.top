@@ -37,14 +37,6 @@ onMounted(async () => {
 	background-color: transparent;
 }
 
-.title {
-	font-size: 2.2rem;
-	font-weight: 700;
-	color: #333333;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
 .gallery-content {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

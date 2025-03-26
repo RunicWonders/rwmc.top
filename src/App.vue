@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { RouterView } from 'vue-router';
 import Nav from '@views/Nav.vue';
-import Footer from '@views/Footer.vue';
+// import Footer from '@views/Footer.vue';
 import fetchImages from './libs/fetchImages';
 
 document.documentElement.lang = 'zh-Hans-CN';
@@ -32,7 +32,7 @@ onMounted(async() => {
 			<component :is="Component" />
 		</transition>
 	</router-view>
-	<Footer />
+	<!-- <Footer /> -->
 </template>
 
 <style scoped>

@@ -11,14 +11,60 @@ body {
 	left: calc(50% - 40vw);
 	font-size: 125%;
 
-	--main-bg: #FCFCFC;
-	--main-text: #000;
-	--main-a: #ff1493;
-	--bg-color: rgba(0, 0, 0, 0.1);
+	--primary-bg: #ffffffcc;
+	--primary-text: #000000;
+	--secondary-bg: #fffffff2;
+	--secondary-text: #777777;
+	// --primary
+	--a-color: #00bbff;
+	--a-hover: #000000cc;
+
+	--title-color: #333333;
 }
 
+/** 主要内容的样式 */
+#main {
+//   margin-top: 50px;
+  
+	height: 100vh;
+	min-height: 100vh;
+	overflow: auto;
+
+	backdrop-filter: blur(10px);
+	background-color: var(--primary-bg);
+	color: var(--primary-text);
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+	// 自定义滚动条
+	@supports (scrollbar-width: auto) {
+		scrollbar-color: var(--primary-bg) transparent;
+		scrollbar-width: thin;
+	}
+	@supports selector(::-webkit-scrollbar) {
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--primary-bg);
+		}
+		&::-webkit-scrollbar-track {
+			background-color: transparent;
+		}
+		&::-webkit-scrollbar {
+			width: 8px;
+		}
+	}
+	
+	&>* {
+		margin-left: 8px;
+	}
+	& a:not([role="button"]) {
+		color: var(--a-color);
+	}
+	// &::-webkit-scrollbar-button {display: none;} // not work
+}
+
+// a标签样式
 a:not([role="button"]):not([data-fancybox]) {
-	color: #000000;
+	color: var(--primary-text);
 	text-decoration: none;
 	position: relative;
 	&::before {
@@ -30,14 +76,14 @@ a:not([role="button"]):not([data-fancybox]) {
 		left: 0;
 		width: 0;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.2);
+		background-color: var(--a-hover);
 		transition: width 0.2s, background-color 0.2s;
 	}
 	&:hover::before {
 		width: 100%;
 	}
 	&[target="_blank"]::after {
-		position: absolute;
+		// position: absolute; // 会和后面的文本重叠
 		font-family: 'Material Design Icons';
 		content: '\F03CC';
 		margin-left: 2px;
@@ -58,45 +104,55 @@ a[role="button"] {
 		background-color: #ff8c00;
 	}
 }
-
+// 代码字体美化
 code {
 	font-size: 14px;
 	font-family: 'Fira Code', 黑体, monospace;
 }
-
+// 图片hover效果
 img:not(.fancybox-image) {
 	transition: transform 0.2s;
 	&:hover {
 		transform: scaleY(0.9);
 	}
 }
-
+// 标题样式
 .title {
-	font-size: 2.5em;
+	font-size: 2.2rem;
 	font-weight: bold;
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	color: var(--title-color);
 }
-
-.logo {
-	display: inline-flex;
-	align-items: center;
-	position: relative;
-	&::after {
-		position: absolute;
-		content: '';
-		display: block;
-		width: 24px;
-		height: 24px;
-		left: -28px;
-		background-size: contain;
-	}
+.subtitle {
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 14px;
+	color: var(--secondary-text);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
-
+// logo样式
+// .logo {
+// 	display: inline-flex;
+// 	align-items: center;
+// 	position: relative;
+// 	&::after {
+// 		position: absolute;
+// 		content: '';
+// 		display: block;
+// 		width: 24px;
+// 		height: 24px;
+// 		left: -28px;
+// 		background-size: contain;
+// 	}
+// }
+// 修复.fab图标字体
 .fab::before {
 	font: var(--fa-font-brands);
 	content: var(--fa);
 }
 
+/** vue路由器过渡 */
 .fade-enter-active,
 .fade-leave-active {
 	transition: transform 0.2s ease;
@@ -107,35 +163,23 @@ img:not(.fancybox-image) {
 	transform: translateY(100%);
 }
 
+/** 夜间主题 */
 @media screen and (prefers-color-scheme: dark) {
 	body {
 		color-scheme: dark;
 
-		--main-bg: #222;
-		--main-text: #0ff;
-		--main-a: hotpink;
+		--primary-bg: #000000cc;
+		--primary-text: #ffffff;
+		--secondary-bg: #000000cc;
+		--secondary-text: #aaaaaa;
+
+		--a-hover: #ffffffaa;
+		
+		--title-color: #dddddd;
 	}
 }
 
-#main {
-  padding-top: 50px;
-  
-	height: 100vh;
-	min-height: 100vh;
-	overflow: auto;
-
-	color: var(--main-text);
-	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	
-	&>* {
-		margin-left: 8px;
-	}
-	& a:not([role="button"]) {
-		color: var(--main-a);
-	}
-}
-
+/** 移动端样式 */
 @media screen and (max-width: 768px) {
 	.title {
 		font-size: 1.25em;
@@ -147,11 +191,5 @@ img:not(.fancybox-image) {
 	}
 	#main {
 		padding-top: 1.4em;
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	#main {
-		background-color: rgba(34, 34, 34, 0.75);
 	}
 }

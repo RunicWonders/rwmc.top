@@ -169,11 +169,14 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+#main {
+  padding-top: 1.4rem;
+}
+
 .docs-container {
   display: flex;
   min-height: 100vh;
   overflow: hidden;
-  background-color: transparent !important;
 }
 
 .doc-nav {

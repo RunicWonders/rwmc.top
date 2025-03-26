@@ -1,19 +1,17 @@
 <template>
 	<div id="main" class="join-panel">
-		<div class="content">
-		  		<span class="title">加入我们</span>
-			<p class="server-info">
-				我们的服务器:
-				<ul>
-					<li>支持正版, 皮肤站登录 安全可靠</li>
-					<li>支持Java版, 基岩版 版本互通</li>
-					<li>无需审核, 无需白名单 进群就能玩</li>
-				</ul>
-			</p>
-			<span class="call-to-action">你还在等什么, 赶快扫描下方二维码或者<a href="https://qm.qq.com/q/azJH50kCKA" target="_blank" rel="noopener">点击这里</a>    加入我们吧!</span>
-			<div class="qrcode-container">
-				<img class="qrcode" src="../assets/qrcode_1742889402186.webp" />
-			</div>
+		<span class="title">加入我们</span>
+		<p class="server-info">
+			我们的服务器:
+			<ul>
+				<li>支持正版, 皮肤站登录 安全可靠</li>
+				<li>支持Java版, 基岩版 版本互通</li>
+				<li>无需审核, 无需白名单 进群就能玩</li>
+			</ul>
+		</p>
+		<span class="call-to-action">你还在等什么, 赶快扫描下方二维码或者<a href="https://qm.qq.com/q/azJH50kCKA" target="_blank" rel="noopener">点击这里</a>    加入我们吧!</span>
+		<div class="qrcode-container">
+			<img class="qrcode" src="../assets/qrcode_1742889402186.webp" />
 		</div>
 	</div>
 </template>
@@ -26,26 +24,9 @@
 	background-color: transparent;
 }
 
-.title {
-	font-size: 2.2rem;
-	font-weight: 700;
-	color: #333333;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-.content {
-	background-color: rgba(255, 255, 255, 0.8);
-	backdrop-filter: blur(10px);
-	border-radius: 15px;
-	padding: 30px;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-	margin-top: 20px;
-}
-
 .server-info {
 	font-size: 1.1rem;
-	color: #666666;
+	color: var(--secondary-text);
 	line-height: 1.6;
 }
 
@@ -55,6 +36,7 @@ ul {
 }
 
 li {
+	color: var(--secondary-text);
 	margin-bottom: 10px;
 }
 

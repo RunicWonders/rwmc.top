@@ -59,13 +59,13 @@ if (typeof window !== 'undefined') {
 	justify-content: space-between;
 	align-items: center;
 	border-radius: 0 0 8px 8px;
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: var(--primary-bg);
 	backdrop-filter: blur(6px);
 	padding: 0 16px;
 	box-sizing: border-box;
 
-	position: fixed;
-	z-index: 10000;
+	/* position: fixed; */
+	z-index: 100; /** 比fancybox的z-index高的话会很难绷 */
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -102,7 +102,7 @@ if (typeof window !== 'undefined') {
 	border: none;
 	font-size: 24px;
 	cursor: pointer;
-	color: #333333;
+	color: var(--primary-text);
 }
 
 .sidebar {
@@ -111,7 +111,7 @@ if (typeof window !== 'undefined') {
 	right: -280px;
 	width: 280px;
 	height: 100vh;
-	background-color: rgba(255, 255, 255, 0.95);
+	background-color: var(--secondary-bg);
 	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 	transition: right 0.3s ease;
 	z-index: 10000;
@@ -147,7 +147,7 @@ if (typeof window !== 'undefined') {
 	border: none;
 	font-size: 24px;
 	cursor: pointer;
-	color: #333333;
+	color: var(--secondary-text);
 }
 
 .sidebar-content {
@@ -189,14 +189,12 @@ if (typeof window !== 'undefined') {
 	.sidebar-overlay {
 		display: block;
 	}
-
-	.logo::after {display: none;} /** 貌似隐藏更好 */
 }
 
 @media screen and (min-width: 768px) {
 	#nav {
 		width: 80vw;
-		left: calc(50% - 40vw + 5px);
+		left: calc(50% - 40vw);
 	}
 }
 </style>

@@ -1,3 +1,7 @@
+<script setup>
+import Footer from '@views/Footer.vue';
+</script>
+
 <template>
   <div id="main" class="main">
     <div class="title-panel">
@@ -54,20 +58,22 @@
         </div>
       </div>
     </div>
+
+    <Footer />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.main {
-  padding-top: 20px;
+#main {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px;
+  padding: 0 20px 0;
   box-sizing: border-box;
   overflow-y: auto;
+  backdrop-filter: none;
   background-color: transparent !important;
 }
 
@@ -78,8 +84,7 @@
   padding: 30px;
   max-width: 1200px;
   width: 90%;
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--primary-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   margin-bottom: 40px;
@@ -132,7 +137,6 @@
 }
 
 .title {
-  color: #333333;
   margin: 0 0 10px 0;
   line-height: 1.3;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -152,7 +156,6 @@
 }
 
 .subtitle {
-  color: #666666;
   margin: 0 0 15px 0;
   font-size: 1.5rem;
   font-weight: 500;
@@ -219,6 +222,22 @@
   margin-bottom: 30px;
   font-size: 2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  &::before {
+    content: "";
+    border-radius: 10px;
+    width: 40%;
+    height: 100%;
+    left: calc(50% - 20%);
+    position: absolute;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+    @media screen and (max-width: 768px) {
+      width: 60%;
+      left: calc(50% - 30%);
+    }
+  }
 }
 
 .features-grid {
@@ -235,7 +254,7 @@
   border-radius: 15px;
   padding: 25px;
   backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--primary-bg);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 
@@ -288,7 +307,7 @@
   border-radius: 10px;
   padding: 15px;
   backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--primary-bg);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 
