@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-// import Docker from './Docker.vue';
 import About from './About.vue';
 
 const sidebarOpen = ref(false);
@@ -9,14 +8,12 @@ function toggleSidebar() {
 	sidebarOpen.value = !sidebarOpen.value;
 }
 
-// 点击侧边栏之外的区域关闭侧边栏
 function closeSidebar(event) {
 	if (sidebarOpen.value && !event.target.closest('.sidebar') && !event.target.closest('.menu-toggle')) {
 		sidebarOpen.value = false;
 	}
 }
 
-// 添加点击监听器
 if (typeof window !== 'undefined') {
 	window.addEventListener('click', closeSidebar);
 }
@@ -26,7 +23,6 @@ if (typeof window !== 'undefined') {
 	<div id="nav">
 		<router-link to="/" class="logo">RunicWonders[神韵之地]</router-link>
 		
-		<!-- 桌面端导航 -->
 		<div class="desktop-nav">
 			<router-link to="/join" class="nav-item">加入我们</router-link>
 			<router-link to="/gallery" class="nav-item">画廊</router-link>
@@ -34,12 +30,10 @@ if (typeof window !== 'undefined') {
 			<About />
 		</div>
 		
-		<!-- 移动端汉堡菜单按钮 -->
 		<button class="menu-toggle" @click.stop="toggleSidebar">
 			<i class="mdi mdi-menu"></i>
 		</button>
 		
-		<!-- 侧边栏导航 -->
 		<div class="sidebar-overlay" v-if="sidebarOpen" @click="toggleSidebar"></div>
 		<div class="sidebar" :class="{ 'open': sidebarOpen }">
 			<div class="sidebar-header">
@@ -65,16 +59,22 @@ if (typeof window !== 'undefined') {
 	justify-content: space-between;
 	align-items: center;
 	border-radius: 0 0 8px 8px;
-	background-color: var(--bg-color);
+	background-color: rgba(255, 255, 255, 0.8);
 	backdrop-filter: blur(6px);
 	padding: 0 16px;
 	box-sizing: border-box;
 
 	position: fixed;
 	z-index: 10000;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.logo::after {
-	border-radius: 0 0 0 8px;
+
+.logo {
+	color: #333333;
+	font-size: 1.2rem;
+	font-weight: 600;
+	text-decoration: none;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .desktop-nav {
@@ -83,33 +83,42 @@ if (typeof window !== 'undefined') {
 }
 
 .nav-item {
-	margin-left: 16px;
+	margin-left: 24px;
+	color: #666666;
+	text-decoration: none;
+	font-size: 0.9rem;
+	font-weight: 500;
+	transition: color 0.3s ease;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+	&:hover {
+		color: #ffb142;
+	}
 }
 
-/* 汉堡菜单按钮 */
 .menu-toggle {
 	display: none;
 	background: transparent;
 	border: none;
 	font-size: 24px;
 	cursor: pointer;
-	color: var(--main-text);
+	color: #333333;
 }
 
-/* 侧边栏样式 */
 .sidebar {
 	position: fixed;
 	top: 0;
 	right: -280px;
 	width: 280px;
 	height: 100vh;
-	background-color: rgba(30, 30, 30, 0.85);
-	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 	transition: right 0.3s ease;
 	z-index: 10000;
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
-	display: none; /* 默认隐藏 */
+	display: none;
+	overflow-y: auto;
 }
 
 .sidebar.open {
@@ -122,9 +131,9 @@ if (typeof window !== 'undefined') {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.3);
 	z-index: 9999;
-	display: none; /* 默认隐藏 */
+	display: none;
 }
 
 .sidebar-header {
@@ -138,7 +147,7 @@ if (typeof window !== 'undefined') {
 	border: none;
 	font-size: 24px;
 	cursor: pointer;
-	color: #fff;
+	color: #333333;
 }
 
 .sidebar-content {
@@ -152,16 +161,18 @@ if (typeof window !== 'undefined') {
 .sidebar-item {
 	padding: 16px 0;
 	font-size: 18px;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 	text-decoration: none;
-	color: #fff;
+	color: #666666;
 	font-weight: 500;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-	position: relative;
-	z-index: 10001;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	transition: color 0.3s ease;
+
+	&:hover {
+		color: #ffb142;
+	}
 }
 
-/* 媒体查询 - 移动端样式 */
 @media screen and (max-width: 768px) {
 	.desktop-nav {
 		display: none;
@@ -171,7 +182,6 @@ if (typeof window !== 'undefined') {
 		display: block;
 	}
 	
-	/* 在移动端显示侧边栏和遮罩 */
 	.sidebar {
 		display: block;
 	}
@@ -187,16 +197,6 @@ if (typeof window !== 'undefined') {
 	#nav {
 		width: 80vw;
 		left: calc(50% - 40vw + 5px);
-	}
-}
-
-@media (prefers-color-scheme: light) {
-	.sidebar {
-		background-color: rgba(50, 50, 50, 0.9);
-	}
-	
-	.sidebar-item {
-		color: #fff;
 	}
 }
 </style>
