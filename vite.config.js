@@ -9,5 +9,8 @@ export default defineConfig({
 			'@components': '/src/components',
 			'@views': '/src/views',
 		}
+	},
+	server: {
+		allowedHosts: ['rwmc.top']
 	}
 });
