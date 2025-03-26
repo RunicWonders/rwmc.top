@@ -44,18 +44,19 @@ jobs:
           sshpass -p "$SSH_PASS" scp -o StrictHostKeyChecking=no -P $SSH_PORT dist.tar.gz $SSH_USER@$SSH_HOST:/tmp/
           
           # 在服务器上解压文件到目标目录
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST << ENDSSH
-            # 确保目标目录存在
-            mkdir -p $REMOTE_DIR
-            
-            # 清空目标目录中的旧文件
-            rm -rf $REMOTE_DIR/*
-            
-            # 解压新文件到目标目录
-            tar -xzvf /tmp/dist.tar.gz -C $REMOTE_DIR
-            
-            # 删除临时压缩包
-            rm /tmp/dist.tar.gz
-            
-            echo "部署完成！"
-          ENDSSH 
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$SSH_HOST <<'EOF'
+          REMOTE_DIR="/opt/1panel/apps/openresty/openresty/www/sites/rwmc.top/index"
+          
+          # 确保目标目录存在
+          mkdir -p $REMOTE_DIR
+          
+          # 清空目标目录中的旧文件
+          rm -rf $REMOTE_DIR/*
+          
+          # 解压新文件到目标目录
+          tar -xzvf /tmp/dist.tar.gz -C $REMOTE_DIR
+          
+          # 删除临时压缩包
+          rm /tmp/dist.tar.gz
+          
+          echo "部署完成！"
