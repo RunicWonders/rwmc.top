@@ -9,19 +9,17 @@ const content = ref('');
 const loading = ref(true);
 const error = ref(null);
 const docTitle = ref('文档');
-const mobileNavCollapsed = ref(false); // 默认展开导航栏
+const showNav = ref(false); // 默认不展开导航栏
 
 // 切换移动导航显示状态
 function toggleMobileNav() {
-  mobileNavCollapsed.value = !mobileNavCollapsed.value;
+  showNav.value = !showNav.value;
 }
 
 // 在移动端导航点击后自动收起导航栏
 function navigateAndCollapse(path) {
   navigateTo(path);
-  if (window.innerWidth <= 768) {
-    mobileNavCollapsed.value = true;
-  }
+  toggleMobileNav();
 }
 
 // 导航栏配置
@@ -121,17 +119,13 @@ onMounted(() => {
 
 <template>
   <div id="main" class="docs-container">
-    <!-- 移动端导航切换按钮 -->
-    <div class="mobile-nav-toggle" :class="{ 'collapsed': mobileNavCollapsed }" @click="toggleMobileNav">
-      <div class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+    <button :class="`mobile-nav-toggle ${showNav? 'clicked': ''}`" @click="toggleMobileNav">
+      <i class="mdi mdi-chevron-right"></i>
+    </button>
     
     <!-- 侧边导航栏 -->
-    <div class="doc-nav" :class="{ 'mobile-collapsed': mobileNavCollapsed }">
+    <div class="doc-nav" :class="{ 'mobile-show': showNav }">
+
       <div class="nav-header">
         <h3>文档目录</h3>
       </div>
@@ -369,6 +363,8 @@ onMounted(() => {
   }
 }
 
+.mobile-nav-toggle {display: none;}
+
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
   .docs-container {
@@ -377,42 +373,38 @@ onMounted(() => {
   }
   
   .mobile-nav-toggle {
-    display: flex;
-    align-self: flex-start;
-    
-    &.collapsed {
-      .hamburger-icon span:nth-child(1) {
-        transform: translateY(0);
-      }
-      
-      .hamburger-icon span:nth-child(2) {
-        opacity: 1;
-      }
-      
-      .hamburger-icon span:nth-child(3) {
-        transform: translateY(0);
-      }
+    display: block;
+    position: fixed;
+    top: 4.5em;
+    left: 0;
+    z-index: 100;
+    border: none;
+    font-size: 1em;
+    margin: 0;
+    transition: transform 0.3s ease;
+
+    &.clicked {
+      transform: rotate(180deg);
     }
   }
   
   .doc-nav {
-    width: 100%;
+    width: 80vw;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     max-height: 40vh;
-    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease, left 0.3s ease;
+    overflow: auto;
     background-color: rgba(40, 40, 40, 0.9);
     color: #fff;
+
+    position: fixed;
+    left: calc(-80vw - 10px);
+    top: 5em;
+    z-index: 99;
     
-    &.mobile-collapsed {
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-10px);
-      margin: 0;
-      padding: 0;
-      pointer-events: none;
-      border-bottom: none;
+    &.mobile-show {
+      left: 0;
     }
     
     .nav-header h3 {
@@ -439,65 +431,6 @@ onMounted(() => {
   .doc-content {
     max-width: 100%;
     padding-top: 10px;
-  }
-}
-
-/* 移动导航切换按钮 */
-.mobile-nav-toggle {
-  display: none;
-  position: sticky;
-  top: 10px;
-  left: 10px;
-  z-index: 100;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(50, 50, 50, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 4px;
-  margin: 10px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s;
-  
-  &:hover {
-    background-color: rgba(70, 70, 70, 0.9);
-  }
-  
-  .hamburger-icon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    span {
-      display: block;
-      width: 24px;
-      height: 3px;
-      background-color: #fff;
-      margin: 2px 0;
-      border-radius: 3px;
-      transition: all 0.3s;
-    }
-  }
-}
-
-/* 当导航展开时改变汉堡按钮样式 */
-.mobile-nav-toggle:not(.collapsed) {
-  .hamburger-icon {
-    span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    
-    span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
   }
 }
 
