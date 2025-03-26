@@ -76,4 +76,3 @@ jobs:
           rm -rf /tmp/gh*
           
           echo "部署完成！"
-EOF
