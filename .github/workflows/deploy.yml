@@ -75,4 +75,4 @@ jobs:
           # 清理GitHub Actions的临时文件
           rm -rf /tmp/gh*
           
-          echo "部署完成！"
+          echo "部署完成!"
