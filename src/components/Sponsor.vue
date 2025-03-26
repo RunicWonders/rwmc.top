@@ -8,7 +8,7 @@ import('../libs/fancybox');
 		<div class="content">
 		<span class="title">赞助我们</span>
 			<p>
-				<a href="https://afdian.com/a/ning__mo" target="_blank" rel="noopener" class="afdian-link">爱发电</a>
+				<a href="https://afdian.com/a/ning__mo" target="_blank" rel="noopener">爱发电</a>
 			</p>
 			<a href="/assets/sponsor-wechatpay.webp" data-fancybox data-caption="推荐使用微信支付" class="payment-method">
 				<img v-lazy="'/assets/sponsor-wechatpay.webp'" title="推荐使用微信支付" alt="推荐使用微信支付" />
@@ -30,37 +30,17 @@ import('../libs/fancybox');
 	padding: 30px 20px;
 	max-width: 1200px;
 	margin: 0 auto;
-	background-color: transparent;
-}
-
-.title {
-	font-size: 2.2rem;
-	font-weight: 700;
-	color: #333333;
-	margin-bottom: 20px;
-	text-align: center;
+	backdrop-filter: none !important;
+	background-color: transparent !important;
 }
 
 .content {
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: var(--primary-bg);
 	backdrop-filter: blur(10px);
 	border-radius: 15px;
 	padding: 30px;
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-	margin-top: 20px;
-}
-
-.afdian-link {
-	display: inline-block;
-	color: #ff8c00;
-	text-decoration: none;
-	font-size: 1.1rem;
-	font-weight: 500;
-	transition: color 0.3s ease;
-	&:hover {
-		color: #ffb142;
-		text-decoration: underline;
-	}
+	// margin-top: 20px;
 }
 
 .payment-method {

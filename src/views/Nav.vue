@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import About from './About.vue';
+// import About from './About.vue';
 
 const sidebarOpen = ref(false);
 
@@ -17,6 +17,13 @@ function closeSidebar(event) {
 if (typeof window !== 'undefined') {
 	window.addEventListener('click', closeSidebar);
 }
+
+const links = [
+	['加入我们', '/join'],
+	['赞助', '/sponsor'],
+	['画廊', '/gallery'],
+	['文档', '/docs'],
+]
 </script>
 
 <template>
@@ -24,10 +31,10 @@ if (typeof window !== 'undefined') {
 		<router-link to="/" class="logo">RunicWonders[神韵之地]</router-link>
 		
 		<div class="desktop-nav">
-			<router-link to="/join" class="nav-item">加入我们</router-link>
-			<router-link to="/gallery" class="nav-item">画廊</router-link>
-			<router-link to="/docs" class="nav-item">文档</router-link>
-			<About />
+			<router-link v-for="link in links" :key="link[0]" :to="link[1]" class="nav-item">
+				{{ link[0] }}
+			</router-link>
+			<!-- <About /> -->
 		</div>
 		
 		<button class="menu-toggle" @click.stop="toggleSidebar">
@@ -42,11 +49,11 @@ if (typeof window !== 'undefined') {
 				</button>
 			</div>
 			<div class="sidebar-content">
-				<router-link to="/" class="sidebar-item" @click="toggleSidebar">首页</router-link>
-				<router-link to="/join" class="sidebar-item" @click="toggleSidebar">加入我们</router-link>
-				<router-link to="/gallery" class="sidebar-item" @click="toggleSidebar">画廊</router-link>
-				<router-link to="/docs" class="sidebar-item" @click="toggleSidebar">文档</router-link>
-				<router-link to="/sponsor" class="sidebar-item" @click="toggleSidebar">赞助我们</router-link>
+				<router-link v-for="link in links" :key="link[0]" :to="link[1]" class="sidebar-item"
+					@click="toggleSidebar"
+				>
+					{{ link[0] }}
+				</router-link>
 			</div>
 		</div>
 	</div>
@@ -64,7 +71,7 @@ if (typeof window !== 'undefined') {
 	padding: 0 16px;
 	box-sizing: border-box;
 
-	/* position: fixed; */
+	position: relative;
 	z-index: 100; /** 比fancybox的z-index高的话会很难绷 */
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
