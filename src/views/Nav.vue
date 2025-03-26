@@ -179,6 +179,15 @@ if (typeof window !== 'undefined') {
 	.sidebar-overlay {
 		display: block;
 	}
+
+	.logo::after {display: none;} /** 貌似隐藏更好 */
+}
+
+@media screen and (min-width: 768px) {
+	#nav {
+		width: 80vw;
+		left: calc(50% - 40vw + 5px);
+	}
 }
 
 @media (prefers-color-scheme: light) {

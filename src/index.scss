@@ -114,6 +114,8 @@ img:not(.fancybox-image) {
 }
 
 #main {
+	padding-top: 1em;
+
 	height: 100vh;
 	min-height: 100vh;
 	overflow: auto;
@@ -141,6 +143,9 @@ img:not(.fancybox-image) {
 		font-size: 100%;
 		position: static;
 		width: 100%;
+	}
+	#main {
+		padding-top: 12px;
 	}
 }
 
