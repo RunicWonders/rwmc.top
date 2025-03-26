@@ -3,6 +3,7 @@ name: 部署到生产服务器
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: # 允许手动触发
 
 jobs:
   build-and-deploy:
@@ -15,16 +16,12 @@ jobs:
       - name: 设置Node.js环境
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-      
-      - name: 安装依赖
-        run: npm install
-      
-      - name: 修复build:img脚本错误
-        run: sed -i 's/npx build:img/npm run build:img/g' package.json
+          node-version: '22'
       
       - name: 构建项目
-        run: npm run build
+        run: |
+          npm install
+          npm run build
       
       - name: 清理构建缓存
         run: |
@@ -34,17 +31,16 @@ jobs:
           find ./dist -name "*.map" -type f -delete 2>/dev/null || true
           echo "构建缓存清理完成"
       
-      - name: 安装sshpass
-        run: sudo apt-get install -y sshpass
-      
       - name: 部署到服务器
         env:
           SSH_HOST: ${{ secrets.SERVER_HOST }}
           SSH_PORT: 22
           SSH_USER: root
           SSH_PASS: ${{ secrets.SERVER_PASS }}
-          REMOTE_DIR: "/opt/1panel/apps/openresty/openresty/www/sites/rwmc.top/index"
         run: |
+          # 安装sshpass
+          sudo apt-get install -y sshpass
+
           # 创建dist目录的压缩包
           tar -czvf dist.tar.gz -C dist .
           
@@ -66,11 +62,6 @@ jobs:
           
           # 删除临时压缩包
           rm /tmp/dist.tar.gz
-          
-          # 清理构建缓存（额外保险措施）
-          find $REMOTE_DIR -name "*.cache" -type d -exec rm -rf {} +
-          find $REMOTE_DIR -name ".tmp" -type d -exec rm -rf {} +
-          find $REMOTE_DIR -name "node_modules" -type d -exec rm -rf {} +
           
           # 清理GitHub Actions的临时文件
           rm -rf /tmp/gh*
