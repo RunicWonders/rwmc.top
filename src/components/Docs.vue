@@ -31,15 +31,6 @@ const navItems = [
       { title: '服务器规则', path: 'rules' },
       { title: '常见问题', path: 'faq' },
     ]
-  },
-  {
-    title: '游戏内容',
-    items: [
-      { title: '世界介绍', path: 'worlds' },
-      { title: '经济系统', path: 'economy' },
-      { title: '基础建设', path: 'builds' },
-      { title: '特色玩法', path: 'features' },
-    ]
   }
 ];
 
