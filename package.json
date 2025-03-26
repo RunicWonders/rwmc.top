@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:img && vite build",
+    "build": "npx build:img && vite build",
     "preview": "vite preview",
     "build:img": "node bin/buildImagesJson.js"
   },
+  "packageManager": "yarn@4.7.0",
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
     "@mdi/font": "^7.4.47",

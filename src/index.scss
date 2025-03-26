@@ -18,7 +18,7 @@ body {
 }
 
 a:not([role="button"]):not([data-fancybox]) {
-	color: pink;
+	color: #000000;
 	text-decoration: none;
 	position: relative;
 	&::before {
@@ -88,7 +88,6 @@ img:not(.fancybox-image) {
 		width: 24px;
 		height: 24px;
 		left: -28px;
-		background-image: url('/favicon.ico');
 		background-size: contain;
 	}
 }
@@ -119,16 +118,13 @@ img:not(.fancybox-image) {
 }
 
 #main {
-	padding-top: 1em;
-
+  padding-top: 50px;
+  
 	height: 100vh;
 	min-height: 100vh;
 	overflow: auto;
 
 	color: var(--main-text);
-	background-color: rgba(252, 252, 252, 0.75);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 	border-radius: 8px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	
