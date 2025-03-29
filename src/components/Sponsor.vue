@@ -27,7 +27,6 @@ import('../libs/fancybox');
 
 <style lang="scss" scoped>
 .sponsor-container {
-	padding: 30px 20px;
 	max-width: 1200px;
 	margin: 0 auto;
 	backdrop-filter: none !important;
@@ -40,7 +39,7 @@ import('../libs/fancybox');
 	border-radius: 15px;
 	padding: 30px;
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-	// margin-top: 20px;
+	margin-top: 20px;
 }
 
 .payment-method {
