@@ -35,6 +35,7 @@ onMounted(async () => {
 	max-width: 1200px;
 	margin: 0 auto;
 	background-color: transparent;
+	margin-top: 20px;
 }
 
 .gallery-content {

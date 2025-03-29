@@ -174,9 +174,11 @@ onMounted(() => {
 }
 
 .docs-container {
-  display: flex;
-  min-height: 100vh;
-  overflow: hidden;
+	padding: 30px 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: transparent;
+	margin-top: 20px;
 }
 
 .doc-nav {
