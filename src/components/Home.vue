@@ -1,5 +1,5 @@
 <script setup>
-import Footer from '@views/Footer.vue';
+// import Footer from '@views/Footer.vue';
 </script>
 
 <template>
@@ -13,13 +13,12 @@ import Footer from '@views/Footer.vue';
         <h2 class="subtitle">神的陨落，韵律之起</h2>
         <h2 class="subtitle">欢迎来到祁舟！</h2>
         <p class="description">探索神秘的世界，开启属于你的冒险之旅。</p>
+        <div class="button-container">
+          <router-link to="/join" role="button" class="join-btn">立即加入</router-link>
+        </div>
       </div>
     </div>
-    
-    <div class="button-container">
-      <router-link to="/join" role="button" class="join-btn">立即加入</router-link>
-    </div>
-    
+
     <div class="features-panel">
       <h3 class="section-title">我们的特色</h3>
       <div class="features-grid">
@@ -40,24 +39,6 @@ import Footer from '@views/Footer.vue';
         </div>
       </div>
     </div>
-    
-    <div class="server-panel">
-      <h3 class="section-title">服务器列表</h3>
-      <div class="server-list">
-        <div class="server-item">
-          <span class="server-date">主服</span>
-          <span class="server-content">全新版本“春意盎然”正即将上线，新增多个生物变种与玩法。</span>
-        </div>
-        <div class="server-item">
-          <span class="server-date">附加服</span>
-          <span class="server-content">给基岩版玩家特意提供的基岩版服务器</span>
-        </div>
-        <div class="server-item">
-          <span class="server-date">其它...</span>
-          <span class="server-content">添加QQ群156906585获取更多</span>
-        </div>
-      </div>
-    </div>
 
   </div>
 </template>
@@ -70,9 +51,10 @@ import Footer from '@views/Footer.vue';
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y: visible;
   backdrop-filter: none;
   background-color: transparent !important;
+  padding: 20px 0;
 }
 
 .title-panel {
@@ -85,8 +67,8 @@ import Footer from '@views/Footer.vue';
   background-color: var(--primary-bg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  margin-bottom: 40px;
-  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -100,6 +82,7 @@ import Footer from '@views/Footer.vue';
     text-align: center;
     gap: 20px;
     padding: 20px 15px;
+    margin-top: 20px;
   }
 }
 
@@ -132,6 +115,7 @@ import Footer from '@views/Footer.vue';
 
 .title-content {
   text-align: left;
+  flex: 1;
 }
 
 .title {
@@ -166,7 +150,7 @@ import Footer from '@views/Footer.vue';
 
 .description {
   color: #888888;
-  margin: 0;
+  margin: 0 0 20px 0;
   font-size: 1rem;
   line-height: 1.5;
   max-width: 500px;
@@ -174,9 +158,10 @@ import Footer from '@views/Footer.vue';
 }
 
 .button-container {
-  margin-top: 30px;
-  text-align: center;
-  margin-bottom: 40px;
+  text-align: left;
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 }
 
 .join-btn {
@@ -211,7 +196,7 @@ import Footer from '@views/Footer.vue';
 .features-panel {
   width: 90%;
   max-width: 1200px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .section-title {
@@ -262,14 +247,6 @@ import Footer from '@views/Footer.vue';
   }
 }
 
-.feature-icon {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 181, 66, 0.2);
-  border-radius: 50%;
-  margin: 0 auto 15px;
-}
-
 .feature-title {
   color: #666666;
   margin: 0 0 10px 0;
@@ -284,46 +261,6 @@ import Footer from '@views/Footer.vue';
   font-size: 0.9rem;
   line-height: 1.5;
   text-align: center;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-.server-panel {
-  width: 90%;
-  max-width: 1200px;
-  margin-bottom: 40px;
-}
-
-.server-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.server-item {
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  padding: 15px;
-  backdrop-filter: blur(8px);
-  background-color: var(--primary-bg);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateX(5px);
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
-  }
-}
-
-.server-date {
-  color: #333333;
-  font-weight: 600;
-  margin-right: 15px;
-  white-space: nowrap;
-}
-
-.server-content {
-  color: #666666;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 </style>

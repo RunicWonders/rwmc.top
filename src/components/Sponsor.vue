@@ -27,20 +27,13 @@ import('../libs/fancybox');
 
 <style lang="scss" scoped>
 .sponsor-container {
+	padding: 30px 20px;
 	max-width: 1200px;
 	margin: 0 auto;
-	backdrop-filter: none !important;
-	background-color: transparent !important;
-}
-
-.content {
-	background-color: var(--primary-bg);
-	backdrop-filter: blur(10px);
-	border-radius: 15px;
-	padding: 30px;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	background-color: transparent;
 	margin-top: 20px;
 }
+
 
 .payment-method {
 	display: block;
@@ -91,10 +84,6 @@ import('../libs/fancybox');
 @media (max-width: 768px) {
 	.title {
 		font-size: 1.8rem;
-	}
-
-	.content {
-		padding: 20px;
 	}
 
 	.audience-link, .thanks {
