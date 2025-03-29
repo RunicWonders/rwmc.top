@@ -59,18 +59,16 @@ import Footer from '@views/Footer.vue';
       </div>
     </div>
 
-    <Footer />
   </div>
 </template>
 
 <style lang="scss" scoped>
 #main {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 20px 0;
   box-sizing: border-box;
   overflow-y: auto;
   backdrop-filter: none;

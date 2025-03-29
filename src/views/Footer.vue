@@ -1,8 +1,13 @@
 <template>
-  <div id="footer" class="footer">
+  <footer id="global-footer" class="footer">
     <p class="copyright">&copy; 2025 RunicWonders[神韵之地]. All rights reserved.</p>
-    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="beian-link">新ICP备2024015133号</a>
-  </div>
+    <a href="https://beian.miit.gov.cn/" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="beian-link">
+      新ICP备2024015133号
+    </a>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
@@ -10,35 +15,49 @@
   text-align: center;
   background-color: var(--primary-bg);
   backdrop-filter: blur(6px);
-  padding: 16px 0;
+  padding: 20px 0;
   border-radius: 8px 8px 0 0;
-  bottom: 0;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   width: 100%;
+  position: relative;
+  z-index: 50;
+  margin-top: auto; /* 关键属性 */
+
+  /* 新增响应式设计 */
+  @media (max-width: 768px) {
+    padding: 15px 0;
+    border-radius: 0;
+  }
 }
 
 .copyright {
   color: var(--secondary-text);
   margin: 0 0 8px 0;
   font-size: 0.9rem;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  line-height: 1.4;
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
 }
 
-a.beian-link {
-  color: #ff8c00 !important;
+.beian-link {
+  color: var(--accent-color);
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
   font-weight: 500;
-  &:before {
-    top: 100%;
-    height: 2px;
-    background-color: #ff8c00 !important;
-  }
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px;
+
   &:hover {
-    color: #ffb142;
-    transform: translateY(-2px);
+    color: var(--hover-accent);
+    background-color: rgba(255, 159, 67, 0.1);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
   }
 }
 </style>

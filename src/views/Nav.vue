@@ -1,207 +1,276 @@
 <script setup>
-import { ref } from 'vue';
-// import About from './About.vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const sidebarOpen = ref(false);
 
 function toggleSidebar() {
-	sidebarOpen.value = !sidebarOpen.value;
+  sidebarOpen.value = !sidebarOpen.value;
 }
 
 function closeSidebar(event) {
-	if (sidebarOpen.value && !event.target.closest('.sidebar') && !event.target.closest('.menu-toggle')) {
-		sidebarOpen.value = false;
-	}
+  if (sidebarOpen.value && 
+      !event.target.closest('.sidebar') && 
+      !event.target.closest('.menu-toggle')) {
+    sidebarOpen.value = false;
+  }
 }
 
-if (typeof window !== 'undefined') {
-	window.addEventListener('click', closeSidebar);
-}
+onMounted(() => {
+  window.addEventListener('click', closeSidebar);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('click', closeSidebar);
+});
 
 const links = [
-	['加入我们', '/join'],
-	['赞助', '/sponsor'],
-	['画廊', '/gallery'],
-	['文档', '/doc'],
-]
+  ['加入我们', '/join'],
+  ['赞助', '/sponsor'],
+  ['画廊', '/gallery'],
+  ['文档', '/doc'],
+];
 </script>
 
 <template>
-	<div id="nav">
-		<router-link to="/" class="logo">RunicWonders[神韵之地]</router-link>
-		
-		<div class="desktop-nav">
-			<router-link v-for="link in links" :key="link[0]" :to="link[1]" class="nav-item">
-				{{ link[0] }}
-			</router-link>
-			<!-- <About /> -->
-		</div>
-		
-		<button class="menu-toggle" @click.stop="toggleSidebar">
-			<i class="mdi mdi-menu"></i>
-		</button>
-		
-		<div class="sidebar-overlay" v-if="sidebarOpen" @click="toggleSidebar"></div>
-		<div class="sidebar" :class="{ 'open': sidebarOpen }">
-			<div class="sidebar-header">
-				<button class="close-btn" @click="toggleSidebar">
-					<i class="mdi mdi-close"></i>
-				</button>
-			</div>
-			<div class="sidebar-content">
-				<router-link v-for="link in links" :key="link[0]" :to="link[1]" class="sidebar-item"
-					@click="toggleSidebar"
-				>
-					{{ link[0] }}
-				</router-link>
-			</div>
-		</div>
-	</div>
+  <div id="nav">
+    <router-link to="/" class="logo">RunicWonders[神韵之地]</router-link>
+    
+    <nav class="desktop-nav" aria-label="主要导航">
+      <router-link 
+        v-for="link in links" 
+        :key="link[0]" 
+        :to="link[1]" 
+        class="nav-item"
+        active-class="active"
+      >
+        {{ link[0] }}
+      </router-link>
+    </nav>
+    
+    <button 
+      class="menu-toggle" 
+      @click.stop="toggleSidebar"
+      aria-label="打开菜单"
+      :aria-expanded="sidebarOpen.toString()"
+    >
+      <i class="mdi mdi-menu"></i>
+    </button>
+    
+    <div 
+      v-if="sidebarOpen" 
+      class="sidebar-overlay" 
+      @click="toggleSidebar" 
+      role="button"
+      aria-label="关闭菜单"
+    ></div>
+    
+    <aside 
+      class="sidebar" 
+      :class="{ 'open': sidebarOpen }"
+      aria-label="移动菜单"
+    >
+      <div class="sidebar-header">
+        <button 
+          class="close-btn" 
+          @click="toggleSidebar"
+          aria-label="关闭菜单"
+        >
+          <i class="mdi mdi-close"></i>
+        </button>
+      </div>
+      <nav class="sidebar-content">
+        <router-link 
+          v-for="link in links" 
+          :key="link[0]" 
+          :to="link[1]" 
+          class="sidebar-item"
+          @click="toggleSidebar"
+          active-class="active"
+        >
+          {{ link[0] }}
+        </router-link>
+      </nav>
+    </aside>
+  </div>
 </template>
 
 <style scoped>
 #nav {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-radius: 0 0 8px 8px;
-	background-color: var(--primary-bg);
-	backdrop-filter: blur(6px);
-	padding: 0 16px;
-	box-sizing: border-box;
-
-	position: relative;
-	z-index: 100; /** 比fancybox的z-index高的话会很难绷 */
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--primary-bg);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 0 0 12px 12px;
+  transition: all 0.25s ease;
 }
 
 .logo {
-	color: #333333;
-	font-size: 1.2rem;
-	font-weight: 600;
-	text-decoration: none;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  color: var(--primary-text);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  max-width: 70vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logo:hover {
+  color: var(--accent-color);
 }
 
 .desktop-nav {
-	display: flex;
-	align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  padding-right: 1rem;
 }
 
 .nav-item {
-	margin-left: 24px;
-	color: #666666;
-	text-decoration: none;
-	font-size: 0.9rem;
-	font-weight: 500;
-	transition: color 0.3s ease;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  color: var(--secondary-text);
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: all 0.2s ease;
+}
 
-	&:hover {
-		color: #ffb142;
-	}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.nav-item.active::after {
+  width: 100%;
+  left: 0;
+  background: var(--hover-accent);
 }
 
 .menu-toggle {
-	display: none;
-	background: transparent;
-	border: none;
-	font-size: 24px;
-	cursor: pointer;
-	color: var(--primary-text);
-}
-
-.sidebar {
-	position: fixed;
-	top: 0;
-	right: -280px;
-	width: 280px;
-	height: 100vh;
-	background-color: var(--secondary-bg);
-	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-	transition: right 0.3s ease;
-	z-index: 10000;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	display: none;
-	overflow-y: auto;
-}
-
-.sidebar.open {
-	right: 0;
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  color: inherit;
+  z-index: 1001;
 }
 
 .sidebar-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.3);
-	z-index: 9999;
-	display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(300px, 85vw);
+  height: 100vh;
+  background: var(--secondary-bg);
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1000;
+  visibility: hidden;
+  transform: translateX(110%);
+}
+
+.sidebar.open {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.sidebar.open + .sidebar-overlay {
+  opacity: 1;
+  visibility: visible;
 }
 
 .sidebar-header {
-	padding: 16px;
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .close-btn {
-	background: transparent;
-	border: none;
-	font-size: 24px;
-	cursor: pointer;
-	color: var(--secondary-text);
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  color: inherit;
 }
 
 .sidebar-content {
-	display: flex;
-	flex-direction: column;
-	padding: 0 16px;
-	position: relative;
-	z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 }
 
 .sidebar-item {
-	padding: 16px 0;
-	font-size: 18px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-	text-decoration: none;
-	color: #666666;
-	font-weight: 500;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-	transition: color 0.3s ease;
-
-	&:hover {
-		color: #ffb142;
-	}
+  padding: 1rem 0;
+  text-decoration: none;
+  color: var(--secondary-text);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: color 0.2s ease;
+  position: relative;
 }
 
-@media screen and (max-width: 768px) {
-	.desktop-nav {
-		display: none;
-	}
-
-	.menu-toggle {
-		display: block;
-	}
-	
-	.sidebar {
-		display: block;
-	}
-	
-	.sidebar-overlay {
-		display: block;
-	}
+.sidebar-item.active {
+  color: var(--accent-color);
 }
 
-@media screen and (min-width: 768px) {
-	#nav {
-		width: 80vw;
-		left: calc(50% - 40vw);
-	}
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  #nav {
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-content {
+    padding: 0.5rem;
+  }
+  
+  .sidebar-item {
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .menu-toggle {
+    transform: scale(0.9);
+  }
 }
 </style>
