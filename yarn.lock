@@ -1031,10 +1031,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21":
+"lodash-es@npm:^4.17.21":
   version: 4.17.21
-  resolution: "lodash@npm:4.17.21"
-  checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 10c0/fb407355f7e6cd523a9383e76e6b455321f0f153a6c9625e21a8827d10c54c2a2341bd2ae8d034358b60e07325e1330c14c224ff582d04612a46a4f0479ff2f2
   languageName: node
   linkType: hard
 
@@ -1393,7 +1393,7 @@ __metadata:
     "@vitejs/plugin-vue": "npm:^5.2.3"
     marked: "npm:^15.0.7"
     sass-embedded: "npm:^1.86.3"
-    v-viewer: "npm:3.0.11"
+    v-viewer: "npm:3.0.21"
     viewerjs: "npm:^1.11.7"
     vite: "npm:^6.2.5"
     vue: "npm:^3.5.13"
@@ -1834,15 +1834,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"v-viewer@npm:3.0.11":
-  version: 3.0.11
-  resolution: "v-viewer@npm:3.0.11"
+"v-viewer@npm:3.0.21":
+  version: 3.0.21
+  resolution: "v-viewer@npm:3.0.21"
   dependencies:
-    lodash: "npm:^4.17.21"
-    viewerjs: "npm:^1.9.0"
+    lodash-es: "npm:^4.17.21"
+    viewerjs: "npm:^1.11.6"
   peerDependencies:
+    viewerjs: ^1.11.0
     vue: ^3.0.0
-  checksum: 10c0/836b5a1e91f82728bd92d75d94b3dda4f119ea45c5051c35141422fcb3336fcf688881df673ee1c36476e61eb6b93c2068cebf55c656c4bc754318d7ed75f339
+  checksum: 10c0/47508dd9b1a514184f41f59365b6199d9fcf0eafe9e984a76962f66277be3b36ed31f67e1d4527fe0639d34d64a34f01776b2a736f285a3c32154eacd8a030a3
   languageName: node
   linkType: hard
 
@@ -1853,7 +1854,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viewerjs@npm:^1.11.7, viewerjs@npm:^1.9.0":
+"viewerjs@npm:^1.11.6, viewerjs@npm:^1.11.7":
   version: 1.11.7
   resolution: "viewerjs@npm:1.11.7"
   checksum: 10c0/9144560b351c3143d919ad2a46db8ecc587ced0a9b0febe44e6e979bad0dd11e09338de203b3f23af73730379edfb3cc21dd3c96640f1392d58873929b617f7b
