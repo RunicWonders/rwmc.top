@@ -154,11 +154,6 @@ const links = [
   transition: all 0.3s ease;
 }
 
-.nav-item:hover::after {
-  width: 100%;
-  left: 0;
-}
-
 .nav-item.active::after {
   width: 100%;
   left: 0;
@@ -170,8 +165,9 @@ const links = [
   background: none;
   border: none;
   padding: 0.5rem;
-  color: inherit;
-  z-index: 1001;
+  font-size: 1.2rem;
+  color: var(--primary-text);
+  z-index: 999;
 }
 
 .sidebar-overlay {
@@ -223,7 +219,8 @@ const links = [
   background: none;
   border: none;
   padding: 0.5rem;
-  color: inherit;
+  font-size: 1.2rem;
+  color: var(--primary-text);
 }
 
 .sidebar-content {
