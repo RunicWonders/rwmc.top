@@ -237,6 +237,7 @@ onMounted(() => {
 
 .doc-content {
   flex: 1;
+  margin-bottom: 2.5rem;
   padding: 0 16px;
   overflow-y: auto;
   max-width: calc(100% - 240px);
