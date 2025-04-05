@@ -1,30 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import fetchImages from '../libs/fetchImages';
-import('../libs/fancybox');
+import imagesJsonHelper from '../libs/images-json-helper';
 
 const images = ref([]);
 
-onMounted(async () => {
-	images.value = await fetchImages();
+onMounted(async() => {
+	const imagesJson = await imagesJsonHelper.fetchJson();
+	images.value = imagesJsonHelper.parseJson(imagesJson);
 });
 </script>
 
 <template>
 	<div id="main" class="gallery-container">
 		<span class="title">画廊</span>
-		<div class="gallery-content">
+		<div>
 			<span v-if="images.length === 0" class="loading-indicator">Loading...</span>
-			<a
-				v-else
-				v-for="image in images"
-				data-fancybox="gallery"
-				:data-caption="image"
-				:href="`/assets/images/${image}`"
-				class="gallery-item"
-			>
-				<img v-lazy="`/assets/images/${image}`" :alt="image" :title="image" />
-			</a>
+			<viewer class="gallery-content" v-else :images="images">
+				<img class="gallery-item" v-for="image in images" :key="image" v-lazy="image" :alt="image" :title="image" />
+			</viewer>
 		</div>
 	</div>
 </template>
@@ -61,23 +54,16 @@ onMounted(async () => {
 	backdrop-filter: blur(8px);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease;
-
-	&:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-	}
-
-	img {
 		width: 100%;
 		height: auto;
 		display: block;
 		object-fit: cover;
 		transition: transform 0.3s ease;
 		border-radius: 8px;
-	}
 
-	&:hover img {
-		transform: scale(1.02);
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 	}
 }
 

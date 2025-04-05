@@ -1,6 +1,5 @@
 <script setup>
 import sponsors from '/sponsors.json';
-import('../libs/fancybox');
 </script>
 
 <template>
@@ -10,9 +9,9 @@ import('../libs/fancybox');
 			<p>
 				<a href="https://afdian.com/a/ning__mo" target="_blank" rel="noopener">爱发电</a>
 			</p>
-			<a href="/assets/sponsor-wechatpay.webp" data-fancybox data-caption="推荐使用微信支付" class="payment-method">
+			<viewer class="payment-method" :images="['/assets/sponsor-wechatpay.webp']">
 				<img v-lazy="'/assets/sponsor-wechatpay.webp'" title="推荐使用微信支付" alt="推荐使用微信支付" />
-			</a>
+			</viewer>
 			<p class="thanks">感谢各位对我们的赞助!</p>
 			<div class="sponsors-list">
 				<ul>

@@ -1,31 +1,32 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, useTemplateRef } from 'vue';
 import { RouterView } from 'vue-router';
 import Nav from '@views/Nav.vue';
 import Footer from '@views/Footer.vue';
-import fetchImages from './libs/fetchImages';
+import imagesJsonHelper from './libs/images-json-helper';
 
 document.documentElement.lang = 'zh-Hans-CN';
 document.title = 'RunicWonders[神韵之地]';
 
 let bgIndex = 0;
 function updateBg() {
-  background.value.style.backgroundImage = `url(/assets/images/${images.value[bgIndex++]})`;
+  background.value.style.backgroundImage = `url(${images.value[bgIndex++]})`;
   (bgIndex > images.value.length - 1) && (bgIndex = 0);
 }
 
-const background = ref(null);
+const background = useTemplateRef('background');
 const images = ref([]);
 onMounted(async() => {
-  background.value = document.querySelector('.background');
-  images.value = await fetchImages();
+  images.value = await imagesJsonHelper.parseJson(
+    await imagesJsonHelper.fetchJson()
+  );
   updateBg();
   setInterval(updateBg, 30 * 1000);
 });
 </script>
 
 <template>
-  <div class="background"></div>
+  <div ref="background" class="background"></div>
   <Nav />
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
