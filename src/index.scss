@@ -43,12 +43,12 @@ body {
 
 	// 自定义滚动条
 	@supports (scrollbar-width: auto) {
-		scrollbar-color: var(--primary-bg) transparent;
+		scrollbar-color: var(--primary-text) transparent;
 		scrollbar-width: thin;
 	}
 	@supports selector(::-webkit-scrollbar) {
 		&::-webkit-scrollbar-thumb {
-			background-color: var(--primary-bg);
+			background-color: var(--primary-text);
 		}
 		&::-webkit-scrollbar-track {
 			background-color: transparent;

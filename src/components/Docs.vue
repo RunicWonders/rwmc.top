@@ -171,6 +171,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 #main {
   padding-top: 1.4rem;
+  display: flex;
 }
 
 .docs-container {
