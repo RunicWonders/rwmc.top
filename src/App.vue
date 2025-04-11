@@ -27,6 +27,7 @@ onMounted(async() => {
 
 <template>
   <div ref="background" class="background"></div>
+  <div id="main-app">
   <Nav />
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
@@ -34,6 +35,7 @@ onMounted(async() => {
     </transition>
   </router-view>
     <Footer />
+    </div>
 </template>
 
 <style scoped>
@@ -50,6 +52,10 @@ onMounted(async() => {
   z-index: -1;
   transition: background-image 2s;
   overflow: hidden;
+}
+#main-app {
+	height: 100%;
+	width: 100%;
 }
 </style>
 
@@ -83,13 +89,4 @@ body {
   --hover-accent: #ffb142;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>
