@@ -45,7 +45,6 @@
 
 <style lang="scss" scoped>
 #main {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +53,7 @@
   overflow-y: visible;
   backdrop-filter: none;
   background-color: transparent !important;
-  padding: 20px 0;
+  padding: 6px 0;
 }
 
 .title-panel {
@@ -196,7 +195,7 @@
 .features-panel {
   width: 90%;
   max-width: 1200px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
 .section-title {
