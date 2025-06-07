@@ -37,6 +37,21 @@
           <h4 class="feature-title">完美互通</h4>
           <p class="feature-desc">是使用Geyser+Geyser扩展完美适配基岩版玩家</p>
         </div>
+                <div class="feature-card">
+          <div class="feature-title">📱</div>
+          <h4 class="feature-title">强劲性能</h4>
+          <p class="feature-desc">是使用独立i5 11400f 32GB物理主机挂载服务器</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">💴</div>
+          <h4 class="feature-title">完全免费</h4>
+          <p class="feature-desc">纯公益生电服务器，不收取任何一点费用，加群即可开玩</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-title">⌚</div>
+          <h4 class="feature-title">全天在线</h4>
+          <p class="feature-desc">服务器7x24小时全天候运行，随时和朋友们来一场mc冒险之旅</p>
+        </div>
       </div>
     </div>
 
