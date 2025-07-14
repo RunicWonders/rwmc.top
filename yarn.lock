@@ -1405,7 +1405,7 @@ __metadata:
     "@vitejs/plugin-vue": "npm:^5.2.4"
     marked: "npm:^15.0.12"
     sass-embedded: "npm:^1.89.2"
-    v-viewer: "npm:3.0.21"
+    v-viewer: "npm:3.0.22"
     viewerjs: "npm:^1.11.7"
     vite: "npm:^6.3.5"
     vue: "npm:^3.5.13"
@@ -1816,16 +1816,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"v-viewer@npm:3.0.21":
-  version: 3.0.21
-  resolution: "v-viewer@npm:3.0.21"
+"v-viewer@npm:3.0.22":
+  version: 3.0.22
+  resolution: "v-viewer@npm:3.0.22"
   dependencies:
     lodash-es: "npm:^4.17.21"
     viewerjs: "npm:^1.11.6"
   peerDependencies:
     viewerjs: ^1.11.0
     vue: ^3.0.0
-  checksum: 10c0/47508dd9b1a514184f41f59365b6199d9fcf0eafe9e984a76962f66277be3b36ed31f67e1d4527fe0639d34d64a34f01776b2a736f285a3c32154eacd8a030a3
+  checksum: 10c0/fb2e0cdecdceccf2c1786ce9f9ed98726f0d947b158c7a90edfbbc2371a4c531c51ea4ee23d1298d3ac62302e4eebb89c35313b559a0b886caae0b33cb4f304e
   languageName: node
   linkType: hard
 
