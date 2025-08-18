@@ -1085,12 +1085,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^15.0.12":
-  version: 15.0.12
-  resolution: "marked@npm:15.0.12"
+"marked@npm:^16.2.0":
+  version: 16.2.0
+  resolution: "marked@npm:16.2.0"
   bin:
     marked: bin/marked.js
-  checksum: 10c0/e09da211544b787ecfb25fed07af206060bf7cd6d9de6cb123f15c496a57f83b7aabea93340aaa94dae9c94e097ae129377cad6310abc16009590972e85f4212
+  checksum: 10c0/aefc418370e916ffeb821d05a585f4311c529268880113ee3695857bfb335119b5b4cd202a5d198fc087f7f3c59f98170ba1994027b2a9b8a172b31e3047ca3a
   languageName: node
   linkType: hard
 
@@ -1403,7 +1403,7 @@ __metadata:
   dependencies:
     "@mdi/font": "npm:^7.4.47"
     "@vitejs/plugin-vue": "npm:^5.2.4"
-    marked: "npm:^15.0.12"
+    marked: "npm:^16.2.0"
     sass-embedded: "npm:^1.89.2"
     v-viewer: "npm:3.0.21"
     viewerjs: "npm:^1.11.7"
